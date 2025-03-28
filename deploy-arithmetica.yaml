@@ -20,11 +20,9 @@ spec:
     spec:
       containers: 
       - name: arithmetic-service
-        image: arithmetic-service:1
-        imagePullPolicy: Never
-        env:
-        - name: PORT
-          value: "8080"
+        image: josephthampracticum7.azurecr.io/arithmetic-service:1
+        imagePullPolicy: Always
+        command: ["java", "-jar", "/app/app.jar"]
 ---
 apiVersion: v1
 kind: Service
@@ -33,7 +31,7 @@ metadata:
 spec:
   selector:
     app: arithmetic-service
-  type: NodePort
+  type: LoadBalancer
   ports:
     - protocol: TCP
       port: 80
