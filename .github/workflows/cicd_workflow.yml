@@ -18,6 +18,6 @@ jobs:
           docker push ghcr.io/josephtham/arithmetic-service:1
       - name: Publish the image to azure container registry
         run: |
-          docker login --username josephthampracticum7 --password ${{secrets.AZURE_CONTAINER_REGISTRY}} josephthampracticum7.azurecr.io
-          docker tag ghcr.io/josephtham/arithmetic-service:1  josephthampracticum7.azurecr.io/arithmetic-service:1
-          docker push josephthampracticum7.azurecr.io/arithmetic-service:1
+          docker login --username p466spring2025josephtham --password ${{secrets.AZURE_CONTAINER_REGISTRY}} p466spring2025josephtham.azurecr.io
+          docker tag ghcr.io/josephtham/arithmetic-service:1  p466spring2025josephtham.azurecr.io/arithmetic-service:1
+          docker push p466spring2025josephtham.azurecr.io/arithmetic-service:1
