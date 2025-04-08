@@ -20,7 +20,7 @@ spec:
     spec:
       containers: 
       - name: arithmetic-service
-        image: josephthampracticum7.azurecr.io/arithmetic-service:1
+        image: p466spring2025josephtham.azurecr.io/arithmetic-service:1
         imagePullPolicy: Always
         command: ["java", "-jar", "/app/app.jar"]
 ---
