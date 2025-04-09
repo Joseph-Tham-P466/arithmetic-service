@@ -27,12 +27,22 @@ jobs:
           docker tag ghcr.io/josephtham/arithmetic-service:$VERSION ${{secrets.AZURE_CONTAINER_REGISTRY}}.azurecr.io/arithmetic-service:$VERSION
           docker push ${{secrets.AZURE_CONTAINER_REGISTRY}}.azurecr.io/arithmetic-service:$VERSION
 
-      - uses: tale/kubectl-action@v1
+      - name: Install kubectl
+        uses: azure/setup-kubectl@v3
         with:
-          base64-kube-config: ${{ secrets.KUBE_CONFIG }}
+          version: 'latest'
+
+      - name: Configure kubectl
+        uses: azure/k8s-set-context@v3
+        with:
+          method: kubeconfig
+          kubeconfig: ${{ secrets.KUBE_CONFIG }}
 
       - name: Make deploy script executable
         run: chmod +x ./deploy.sh
 
       - name: Deploy
+        env:
+          CONTAINER_REGISTRY: ${{ secrets.AZURE_CONTAINER_REGISTRY }}.azurecr.io
+          VERSION: ${{ github.sha }}
         run: ./deploy.sh
