@@ -31,5 +31,8 @@ jobs:
         with:
           base64-kube-config: ${{ secrets.KUBE_CONFIG }}
 
+      - name: Make deploy script executable
+        run: chmod +x ./deploy.sh
+
       - name: Deploy
         run: ./deploy.sh
