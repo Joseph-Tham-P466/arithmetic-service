@@ -39,10 +39,10 @@ jobs:
           chmod 600 $HOME/.kube/config
 
       - name: Make deploy script executable
-        run: chmod +x ./deploy.sh
+        run: chmod +x ./scripts/deploy.sh
 
       - name: Deploy
         env:
           CONTAINER_REGISTRY: ${{ secrets.AZURE_CONTAINER_REGISTRY }}.azurecr.io
           VERSION: ${{ github.sha }}
-        run: ./deploy.sh
+        run: ./scripts/deploy.sh
